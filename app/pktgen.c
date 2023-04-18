@@ -96,7 +96,7 @@ pktgen_packet_rate(port_info_t *info)
     uint64_t wire_size = (pktgen_wire_size(info) * 8);
     uint64_t lk        = (uint64_t)info->link.link_speed * Million;
     uint64_t pps       = (((lk / wire_size) * info->tx_rate) / 100);
-    uint64_t cpp       = (pps > 0) ? (pktgen.hz / pps) : pktgen.hz;
+    uint64_t cpp       = (pps > 0) ? (pktgen.hz / pps) : 0;
 
     info->tx_pps    = pps;
     info->tx_cycles = ((cpp * info->tx_burst) * get_port_txcnt(pktgen.l2p, info->pid));
